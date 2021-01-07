@@ -64,7 +64,23 @@ const fetchOneCode = async (code) => {
           obj_des.uf = obj_des.uf[0]
         })
       }
+
+      if(obj.endereco){
+        obj.endereco.forEach(obj_end => {
+          obj_end.codigo = obj_end.codigo[0]
+          obj_end.cep = obj_end.cep[0]
+          obj_end.logradouro = obj_end.logradouro[0]
+          obj_end.numero = obj_end.numero[0]
+          obj_end.localidade = obj_end.localidade[0]
+          obj_end.uf = obj_end.uf[0]
+          obj_end.bairro = obj_end.bairro[0]
+
+        })
+      }
     })
+
+    xml.evento = xml.evento.reverse()
+
     return xml
   })
 }
@@ -140,6 +156,8 @@ const fetchManyCodes = async (codes) => {
         })
       }
     })
+
+    xml.evento = xml.evento.reverse()
 
     return xml
   })
