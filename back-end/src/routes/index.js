@@ -1,14 +1,22 @@
 const express = require('express')
 const routes = express.Router()
 
-const Correios = require('../controllers/Correios')
-const Whatsapp = require('../controllers/WhatsappApi')
+const Auth = require('../middlewares/Auth')
+const AuthController = require('../controllers/AuthController')
 
+const Correios = require('../controllers/CorreiosController')
+const Whatsapp = require('../controllers/WhatsappController')
+
+//Auth Routes
+routes.post('/auth/signin', AuthController.signin)
+routes.post('/auth/signup', AuthController.signup)
+
+
+//Correios Routes
 routes.get('/tracking/code', Correios.getOne)
 routes.get('/tracking/codes', Correios.getMany)
 
-//Whatsapp
-
+//Whatsapp Routes
 routes.get('/whatsapp/send/text-message/', Whatsapp.sendMessage)
 routes.get('/whatsapp/disconnect/', Whatsapp.Disconnect)
 routes.get('/whatsapp/connect/', Whatsapp.Connect)
